@@ -1,0 +1,62 @@
+{% extends "calc/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+    <div class="content-section">
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4"> Add a Book </legend>
+                {{ form|crispy }}
+            </fieldset>
+            <div class="form-group">
+                {% if Output == 0 %}
+                <h3> {{ Input }} </h3>
+                {% else %}
+                <h3> {{ Output }} </h3>
+                {% endif %}
+                <!-- <button class="col-md-4 btn btn-outline-info" type=""> {{ Input }} </button> -->
+
+            </div>
+        </form>
+
+        <main role="main" class="container">
+            <form method="POST">
+            <div class="row">
+              <div class="col-md-10">
+                            {% csrf_token %}
+                            {% for button in f_buttons %}
+                                <button class="col-md-3 btn btn-outline-info btn-sm m-1" type="submit" name="{{ button }}"> {{ button }} </button>
+                            {% endfor %}
+
+                                {% for button in buttons %}
+                                        <button class="col-md-3 btn btn-outline-info btn-sm m-1" type="submit" name="{{ button }}"> {{ button }} </button>
+                                {% endfor %}
+            
+                                {% for button in null_button %}
+                                    <button class="col-md-4 btn btn-outline-info btn-sm m-1" type="submit" name="{{ button }}"> {{ button }} </button>
+                                {% endfor %}
+ 
+              </div>
+
+                <div class="col-md-2">
+                    {% for button in action_buttons %}
+                        <button class="col-md-12 btn btn-outline-info btn-sm m-1" type="submit" name="{{ button }}"> {{ button }} </button>
+                    {% endfor %}
+                </div>
+
+                <div class="col-md-12">
+                    {% for button in eq_button %}
+                        <button class="col-md-12 btn btn-outline-info btn-sm m-1" type="submit" name="{{ button }}"> {{ button }} </button>
+                    {% endfor %}
+                </div>
+
+            </div>
+        </form>
+        </main>
+
+
+
+    </div>
+{% endblock content %}
+
+<button class="btn btn-danger btn-sm m-1" type="submit" name="{{ button }}"> {{ button }} </button>
